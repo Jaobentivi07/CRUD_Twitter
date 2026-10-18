@@ -1,0 +1,101 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #15202b;
+    color: white;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #1d9bf0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+input{
+    min-height: 10px;
+    resize: vertical;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #38444d;
+    background: #192734;
+    color: white;
+    font-size: 16px;
+}
+.passaro {
+    width: px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.passaro img {
+    width: 500px;
+    height: auto;
+}
+textarea {
+    min-height: 100px;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #38444d;
+    background: #192734;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: #1d9bf0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.post {
+    background: #192734;
+    border: 1px solid #38444d;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.post p {
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.acoes button {
+    font-size: 13px;
+}
+
+.acoes .excluir {
+    background: #e63946;
+}
