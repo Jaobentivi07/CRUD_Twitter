@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+p {
+    text-align: center;
+    color: #1d9bf0;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
