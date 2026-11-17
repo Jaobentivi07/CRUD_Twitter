@@ -1,3 +1,9 @@
+// HORA ATUAL
+const msg = document.getElementById("msg");
+const hora = new Date().getHours();
+if (msg) {
+    msg.textContent = `Agora são ${hora}h`;
+}
 
 const miniTwitter = {
     usuarios: [
@@ -17,6 +23,29 @@ const miniTwitter = {
 
 let proximoId = 2;
 
+// PERSISTÊNCIA (localStorage)
+const CHAVE = "miniTwitter";
+
+function salvar() {
+    localStorage.setItem(CHAVE, JSON.stringify({
+        posts: miniTwitter.posts,
+        proximoId
+    }));
+}
+
+function carregar() {
+    const salvo = localStorage.getItem(CHAVE);
+    if (!salvo) return;
+
+    try {
+        const dados = JSON.parse(salvo);
+        miniTwitter.posts = dados.posts;
+        proximoId = dados.proximoId;
+    } catch {
+        localStorage.removeItem(CHAVE);
+    }
+}
+
 // CREATE
 function criaPost(dados) {
     miniTwitter.posts.push({
@@ -25,6 +54,7 @@ function criaPost(dados) {
         content: dados.content
     });
 
+    salvar();
     renderizaPosts();
 }
 
@@ -39,6 +69,7 @@ function atualizaContentDoPost(id, novoConteudo) {
 
     if (post && novoConteudo.trim() !== "") {
         post.content = novoConteudo;
+        salvar();
         renderizaPosts();
     }
 }
@@ -49,6 +80,7 @@ function apagaPost(id) {
         return post.id !== id;
     });
 
+    salvar();
     renderizaPosts();
 }
 
@@ -108,29 +140,20 @@ formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
 
     const conteudo = campoConteudo.value.trim();
-
-    if (conteudo === "") {
-        return;
-    }
-
-
-   
-
     const nome = campoNome.value.trim();
 
-     if (nome === "") {
+    if (conteudo === "" || nome === "") {
         return;
     }
 
     criaPost({
-        owner: campoNome.value.trim(),
+        owner: nome,
         content: conteudo
     });
 
-
-
     formulario.reset();
 });
-// 
-// MOSTRAR O POST INICIAL
+
+// CARREGAR OS DADOS SALVOS E MOSTRAR OS POSTS
+carregar();
 renderizaPosts();
